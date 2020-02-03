@@ -22,10 +22,9 @@ router.get(`/cat/:${TABLE[1]}`, (req, res)=>{
 })
 //GET A MULTIPLE IDS
 router.patch(`/mult/:${TABLE[1]}`, (req, res)=>{
-    console.log(req.body.data);
-    if(req.body && req.body.data && Object.keys(req.body.data).length > 0 )
+    if(req.body && Object.keys(req.body).length > 0 )
     {
-        let param = build_in_param(req.body.data, TABLE[1]);
+        let param = build_in_param(req.body[TABLE[1]], TABLE[1]);
         const sql = `SELECT * FROM ${TABLE[0]} WHERE ${param}`;
         request(sql, res);
     }
