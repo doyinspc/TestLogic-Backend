@@ -7,6 +7,8 @@ const insert_param = utility.insert_param;
 const request = utility.request_param;
 const request_insert = utility.request_insert_id;
 const request_update = utility.request_update;
+const request_group = utility.request_group;
+const request_move = utility.request_move;
 const request_delete = utility.request_delete;
 const update_param = utility.update_param;
 const build_in_param = utility.build_in_param;
@@ -58,6 +60,29 @@ router.patch(`/update/:id`, (req, res)=>{
     const sqlr = `SELECT * FROM ${TABLE[0]} WHERE id = ${id}`;
     request_update(sql, sqlr, res);
 })
+
+//CHANGE QUESTIONS AND INSTRUCTION GROUP
+router.patch(`/group/:id`, (req, res)=>{
+    let param = build_param(req.params);
+    let id = req.params.id;
+    let completeQuery = update_param(req.body);
+    const sql = `UPDATE ${ TABLE[0] } SET ${ completeQuery } ${ param }`;
+    const sqlr = `SELECT * FROM ${TABLE[0]} WHERE id = ${id}`;
+    request_group(id, req.body.grp);
+    request_update(sql, sqlr, res);
+})
+
+//MOVE INSTRUCTION
+router.patch(`/move/:id`, (req, res)=>{
+    let param = build_param(req.params);
+    let id = req.params.id;
+    let completeQuery = update_param(req.body);
+    const sql = `UPDATE ${ TABLE[0] } SET ${ completeQuery } ${ param }`;
+    const sqlr = `SELECT * FROM ${TABLE[0]} WHERE id = ${id}`;
+    request_move(TABLE[0], TABLE[1], null, id, req.body.instructionID);
+    //request_update(sql, sqlr, res);
+})
+
 //DELETE A ROW
 router.delete(`/:id`, (req, res)=>{
     let completeQuery = build_param(param);

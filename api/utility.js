@@ -17,8 +17,8 @@ module.exports = {
         }else{
             return  '';
         }
-        
-    },build_param_active : (data) => {
+    },
+    build_param_active : (data) => {
         if(Object.keys(data).length  > 0)
         {
             let str = '';
@@ -146,7 +146,25 @@ module.exports = {
             }
         })
     },
-    request_update : (sql, sqlr, res) => {
+    request_user : (sql, sql_in, res) => {
+        mysql.query(sql, (err, rows, fields)=>{
+            if(!err){
+               res.send(rows);
+            }else{
+                mysql.query(sql_in, (err1, rows1, fields1)=>{
+                    if(!err1){
+                        res.send(rows1);
+                    }else{
+                        console.log(`Database Insertion Failed ${JSON.stringify(err1, undefined, 2)}`)
+                        res.send(`Database Insertion Failed ${JSON.stringify(err1, undefined, 2)}`);
+                    }
+                })
+            }
+        })
+    },
+    request_group : (id, num) => {
+        let sql = `UPDATE questions SET grp = ${num} WHERE instructionID = ${id} AND grp < ${num}` ;
+        let sqlr = `SELECT * FROM questions WHERE instructionID = ${id} AND grp = ${num}`;
         mysql.query(sql, (err, rows, fields)=>{
             if(!err){
                 mysql.query(sqlr, (err, rows, fields)=>{
@@ -156,6 +174,39 @@ module.exports = {
                         res.send(`Database Insertion update Failed ${JSON.stringify(err, undefined, 2)}`);
                     }
                     
+                })
+            }else{
+                res.send(`Database update Failed ${JSON.stringify(err, undefined, 2)}`);
+            }
+        })
+    },
+    request_move : (DB, DBCOL, id, news, olds) => {
+        let sql = '';
+
+        if(id && parseInt(id) > 0)
+        {
+            sql = `UPDATE ${DB} SET ${DBCOL} = ${news} WHERE id = ${id}` ;
+        }else if(olds && parseInt(olds) > 0)
+        {
+            sql = `UPDATE ${DB} SET ${DBCOL} = ${news} WHERE ${DBCOL} = ${olds}` ;
+        }
+        mysql.query(sql, (err, rows, fields)=>{
+            if(!err){
+               
+            }else{
+                res.send(`Database update Failed ${JSON.stringify(err, undefined, 2)}`);
+            }
+        })
+    },
+    request_update : (sql, sqlr, res) => {
+        mysql.query(sql, (err, rows, fields)=>{
+            if(!err){
+                mysql.query(sqlr, (err, rows, fields)=>{
+                    if(!err){
+                        res.send(rows);
+                    }else{
+                        res.send(`Database Insertion update Failed ${JSON.stringify(err, undefined, 2)}`);
+                    }
                 })
             }else{
                 res.send(`Database update Failed ${JSON.stringify(err, undefined, 2)}`);

@@ -12,7 +12,8 @@ const instructionRoutes = require('./../api/instruction');
 const questionRoutes = require('./../api/question');
 const answerRoutes = require('./../api/answer');
 const distractorRoutes = require('./../api/distractor');
- const API = '';
+const userRoutes = require('./../api/user');
+const API = '';
 
 router.use(`${API}/subject`, subjectRoutes);
 router.use(`${API}/theme`, themeRoutes);
@@ -23,6 +24,6 @@ router.use(`${API}/instruction`, instructionRoutes);
 router.use(`${API}/question`, questionRoutes);
 router.use(`${API}/answer`, answerRoutes);
 router.use(`${API}/distractor`, distractorRoutes);
-
+router.use(`${API}/user`, userRoutes);
 
 module.exports = router;

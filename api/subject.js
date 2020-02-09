@@ -52,7 +52,6 @@ router.patch(`/activate/:id`, (req, res)=>{
     let completeQuery = update_param(req.body);
     const sql = `UPDATE ${ TABLE } SET active = ${req.body.active} ${ param }`;
     const sqlr = `SELECT * FROM ${TABLE} WHERE id = ${id}`;
-    console.log(sql)
     request_update(sql, sqlr, res);
 })
 //DELETE A ROW
