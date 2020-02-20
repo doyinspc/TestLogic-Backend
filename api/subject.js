@@ -17,7 +17,15 @@ router.get(`/`, (req, res)=>{
     let param = req.params;
     let completeQuery = build_param(param)
     const sql = `SELECT *  FROM ${ TABLE } ${ completeQuery }`; 
-    console.log(sql)
+    console.log(sql);
+    request(sql, res);
+})
+//GET SUBJECT MOBILE
+router.get(`mobile/`, (req, res)=>{
+    let param = req.params;
+    let completeQuery = build_param(param)
+    const sql = `SELECT *  FROM ${ TABLE } WHERE active = 0`; 
+    console.log(sql);
     request(sql, res);
 })
 //GET A SECIFIC ROW

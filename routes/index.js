@@ -12,6 +12,11 @@ const instructionRoutes = require('./../api/instruction');
 const questionRoutes = require('./../api/question');
 const answerRoutes = require('./../api/answer');
 const distractorRoutes = require('./../api/distractor');
+const testRoutes = require('./../api/test');
+const scoreRoutes = require('./../api/score');
+const resourceRoutes = require('./../api/resource');
+const mockRoutes = require('./../api/mock');
+const mockscoreRoutes = require('./../api/mockscore');
 const userRoutes = require('./../api/user');
 const API = '';
 
@@ -24,6 +29,11 @@ router.use(`${API}/instruction`, instructionRoutes);
 router.use(`${API}/question`, questionRoutes);
 router.use(`${API}/answer`, answerRoutes);
 router.use(`${API}/distractor`, distractorRoutes);
+router.use(`${API}/test`, testRoutes);
+router.use(`${API}/score`, scoreRoutes);
+router.use(`${API}/mock`, mockRoutes);
+router.use(`${API}/mockscore`, mockscoreRoutes);
+router.use(`${API}/resource`, resourceRoutes);
 router.use(`${API}/user`, userRoutes);
 
 module.exports = router;

@@ -1,4 +1,4 @@
-const  { CLIENTS } =  require('./types');
+const  { USERS } =  require('./types');
 const router = require('express').Router();
 const utility = require('./utility');
 
@@ -12,7 +12,7 @@ const request_delete = utility.request_delete;
 const update_param = utility.update_param;
 
 
-const TABLE = CLIENTS;
+const TABLE = USERS;
 //GET A PARTICULAR CATEGORY
 router.get(`/`, (req, res)=>{
     let param = req.params;
@@ -44,6 +44,7 @@ router.patch(`/post/:id`, (req, res)=>{
     let completeQuery = insert_param(req.body.user);
     const sqlin = `INSERT INTO ${ TABLE } ${ completeQuery[0] } VALUES ${ completeQuery[1] }`;
     const sql = `SELECT * FROM ${TABLE} WHERE id = ${id}`;
+    
     request_user(sql, sqlin, res);
 })
 

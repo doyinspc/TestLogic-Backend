@@ -19,15 +19,18 @@ router.get(`/cat/:${TABLE[1]}`, (req, res)=>{
     let param = req.params;
     let completeQuery = build_param(param)
     const sql = `SELECT *  FROM ${ TABLE[0] } ${ completeQuery }`; 
+    console.log(sql)
     request(sql, res);
 })
 
 //GET A MULTIPLE IDS
 router.patch(`/mult/:${TABLE[1]}`, (req, res)=>{
+    console.log(req.body);
     if(req.body && req.body && Object.keys(req.body).length > 0 )
     {
         let param = build_in_param(req.body[TABLE[1]], TABLE[1]);
         const sql = `SELECT * FROM ${TABLE[0]} WHERE ${param}`;
+        console.log(sql)
         request(sql, res);
     }
 })

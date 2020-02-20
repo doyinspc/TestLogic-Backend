@@ -5,11 +5,16 @@ const TOPICS = ['topics', 'themeID'];
 const CONTENTS = ['contents', 'topicID'];
 const OBJECTIVES= ['objectives', 'topicID'];
 const INSTRUCTIONS = ['instructions', 'topicID'];
+const RESOURCES = ['resources', 'topicID'];
 const QUESTIONS = ['questions', 'instructionID'];
 const ANSWERS = ['answers', 'questionID'];
 const DISTRACTORS = ['distractors', 'questionID'];
+const TESTS = ['tests', 'userID'];
+const SCORES = ['scores', 'userID'];
+const MOCKS = ['mocks', 'topicID'];
+const MOCKSCORES = ['mockscores', 'topicID'];
 const CLIENTS = 'clients';
-const SCORES = 'scores';
+const USERS = 'users';
 
 module.exports = {
     API ,
@@ -25,6 +30,11 @@ module.exports = {
     ANSWERS,
     DISTRACTORS,
     CLIENTS,
-    SCORES
+    USERS,
+    SCORES,
+    TESTS,
+    MOCKS,
+    MOCKSCORES,
+    RESOURCES
 
 }

@@ -1,4 +1,5 @@
 const mysql = require('./../config/index');
+console.log(mysql)
 module.exports = {
     build_param : (data) => {
         if(Object.keys(data).length  > 0)
@@ -147,18 +148,21 @@ module.exports = {
         })
     },
     request_user : (sql, sql_in, res) => {
-        mysql.query(sql, (err, rows, fields)=>{
+        mysql.query(sql_in, (err, rows, fields)=>{
             if(!err){
-               res.send(rows);
-            }else{
-                mysql.query(sql_in, (err1, rows1, fields1)=>{
+                //inserted 
+                const sql_pull = `SELECT * FROM users WHERE id = ${rows.insertId}`;
+                
+                mysql.query(sql_pull, (err1, rows1, fields1)=>{
                     if(!err1){
                         res.send(rows1);
                     }else{
-                        console.log(`Database Insertion Failed ${JSON.stringify(err1, undefined, 2)}`)
-                        res.send(`Database Insertion Failed ${JSON.stringify(err1, undefined, 2)}`);
+                        console.log(`could not call data ${JSON.stringify(err1, undefined, 2)}`)
+                        res.send(`could not call data ${JSON.stringify(err1, undefined, 2)}`);
                     }
-                })
+                }) 
+            }else{
+                console.log(`Database Insertion Failed ${JSON.stringify(err, undefined, 2)}`);
             }
         })
     },
@@ -172,8 +176,7 @@ module.exports = {
                         res.send(rows);
                     }else{
                         res.send(`Database Insertion update Failed ${JSON.stringify(err, undefined, 2)}`);
-                    }
-                    
+                    }  
                 })
             }else{
                 res.send(`Database update Failed ${JSON.stringify(err, undefined, 2)}`);
