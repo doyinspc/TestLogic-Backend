@@ -2,7 +2,7 @@ const mysql = require("mysql");
 require('dotenv').config({
     path: `../env-files/${process.env.NODE_ENV || 'development'}.env`,
   });
-  console.log(process.env.NODE_ENV )
+  console.log(process.env.NODE_ENV)
 var mysqlConnection = mysql.createConnection({
     host: process.env.DATABASE_HOST,
     user:process.env.DATABASE_USER,
@@ -17,8 +17,6 @@ mysqlConnection.connect((err)=>{
         console.log(`Database Connection Failed ${JSON.stringify(err.sqlMessage, undefined, 2)}`);
     }
 })
-
-
 
 module.exports = mysqlConnection;
 

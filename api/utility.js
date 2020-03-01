@@ -1,5 +1,5 @@
 const mysql = require('./../config/index');
-console.log(mysql)
+
 module.exports = {
     build_param : (data) => {
         if(Object.keys(data).length  > 0)
