@@ -21,8 +21,5 @@ phases:
             - echo building ......
             - yarn build
 artifacts:
-    files: 
-        - "**/*"
+    files: imagedefinitions.json
     discard-paths: no
-    base-directory: dist
-
