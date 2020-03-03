@@ -5,4 +5,4 @@ phases:
         commands:
             #install Node 12
             - npm install
-            - pip install --upgrade awscli
+            - pip3 install --upgrade awscli
