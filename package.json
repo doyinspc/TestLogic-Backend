@@ -55,7 +55,7 @@
     "gulp-wait": "0.0.2",
     "http-errors": "~1.7.3",
     "joi": "^14.3.1",
-    "knex": "^0.20.9",
+    "knex": "^2.4.0",
     "mysql": "^2.18.1",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
